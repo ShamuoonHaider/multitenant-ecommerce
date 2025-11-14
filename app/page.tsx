@@ -10,7 +10,7 @@ const Page = () => {
     <div className="p-4">
       <div className="flex flex-col gap-y-4">
         <div>
-          <Button variant="elavated">
+          <Button variant="elevated">
             Click Me
           </Button>
         </div>
@@ -21,7 +21,7 @@ const Page = () => {
           <Progress value={50} />
         </div>
         <div>
-          <Textarea placeholder="the is a text area" />
+          <Textarea placeholder="this is a text area" />
         </div>
         <div>
           <Checkbox />
