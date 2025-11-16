@@ -1,9 +1,10 @@
 {
   "name": "multitenant-ecommerce",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev && payload generate:types",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
