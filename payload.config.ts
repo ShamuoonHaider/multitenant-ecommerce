@@ -13,6 +13,22 @@ import { Categories } from "./collections/Categories";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Validate required environment variables at startup to fail fast and avoid
+// passing empty strings into the Payload/mongoose configuration.
+const PAYLOAD_SECRET = process.env.PAYLOAD_SECRET;
+if (!PAYLOAD_SECRET) {
+  throw new Error(
+    "PAYLOAD_SECRET environment variable is required for Payload to start."
+  );
+}
+
+const DATABASE_URI = process.env.DATABASE_URI;
+if (!DATABASE_URI) {
+  throw new Error(
+    "DATABASE_URI environment variable is required to connect to the database."
+  );
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -22,12 +38,12 @@ export default buildConfig({
   },
   collections: [Users, Media, Categories],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: DATABASE_URI,
   }),
   sharp,
   plugins: [
