@@ -134,6 +134,7 @@ export const SignUpView = () => {
                       type="password"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

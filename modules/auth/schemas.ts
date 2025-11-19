@@ -7,7 +7,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(3),
+  password: z.string().min(8, "Password must be at least 8 characters long"),
   username: z
     .string()
     .min(3, "Username must be at least 3 characters long")
@@ -18,7 +18,7 @@ export const registerSchema = z.object({
     )
     .refine(
       (val) => !val.includes("--"),
-      "Username cannot contain consective hyphens"
+      "Username cannot contain consecutive hyphens"
     )
     .transform((val) => val.toLowerCase()),
 });

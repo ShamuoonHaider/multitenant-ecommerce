@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -84,7 +85,6 @@ export const SignInView = () => {
             <h1 className="text-4xl font-medium">
               Welcome back! Please sign in to your account.
             </h1>
-
             <FormField
               name="email"
               render={({ field }) => (
@@ -93,6 +93,7 @@ export const SignInView = () => {
                   <FormControl>
                     <Input placeholder="Your email" {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -108,6 +109,7 @@ export const SignInView = () => {
                       type="password"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
