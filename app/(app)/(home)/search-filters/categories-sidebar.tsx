@@ -1,4 +1,3 @@
-import { CustomCategory } from "../types";
 import {
   Sheet,
   SheetContent,
@@ -9,24 +8,27 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTRPC } from "@/trpc/client";
+import { useQuery } from "@tanstack/react-query";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 interface CategoriesSideBarProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  data: CustomCategory[];
 }
 
 export const CategoriesSideBar = ({
   open,
   onOpenChange,
-  data,
 }: CategoriesSideBarProps) => {
+  const trpc = useTRPC();
+  const { data } = useQuery(trpc.categories.getMany.queryOptions());
   const router = useRouter();
-  const [parentCategories, setParentCategories] = useState<
-    CustomCategory[] | null
+  const [parentCategories, setParentCategories] =
+    useState<CategoriesGetManyOutput | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<
+    CategoriesGetManyOutput[1] | null
   >(null);
-  const [selectedCategory, setSelectedCategory] =
-    useState<CustomCategory | null>(null);
 
   const currentCategories = parentCategories ?? data ?? [];
 
@@ -36,9 +38,9 @@ export const CategoriesSideBar = ({
     onOpenChange(open);
   };
 
-  const handleCategoryClick = (category: CustomCategory) => {
-    if (category.subCategories && category.subCategories.length > 0) {
-      setParentCategories(category.subCategories as CustomCategory[]);
+  const handleCategoryClick = (category: CategoriesGetManyOutput[1]) => {
+    if (category.subcategories && category.subcategories.length > 0) {
+      setParentCategories(category.subcategories as CategoriesGetManyOutput);
       setSelectedCategory(category);
       // You'll need to update currentCategories to show subcategories
       // This depends on your data structure
@@ -64,10 +66,6 @@ export const CategoriesSideBar = ({
   };
 
   const backgroundColor = selectedCategory?.color || "white";
-  const handleBack = () => {
-    setParentCategories(null);
-    setSelectedCategory(null);
-  };
 
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
@@ -96,7 +94,7 @@ export const CategoriesSideBar = ({
               className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between items-center text-base  font-medium"
             >
               {category.name}
-              {category.subCategories && category.subCategories.length > 0 && (
+              {category.subcategories && category.subcategories.length > 0 && (
                 <ChevronRightIcon className="size-4 ml-2" />
               )}
             </button>
