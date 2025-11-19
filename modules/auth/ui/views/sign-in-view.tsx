@@ -3,11 +3,9 @@
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,7 +13,7 @@ import { toast } from "sonner";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../../schemas";
+import { loginSchema } from "../../schemas";
 import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -28,12 +26,12 @@ const poppins = Poppins({
   weight: ["700"],
 });
 
-export const SignUpView = () => {
+export const SignInView = () => {
   const router = useRouter();
 
   const trpc = useTRPC();
-  const register = useMutation(
-    trpc.auth.register.mutationOptions({
+  const login = useMutation(
+    trpc.auth.login.mutationOptions({
       onError: (error) => {
         toast.error(error.message);
       },
@@ -43,25 +41,18 @@ export const SignUpView = () => {
     })
   );
 
-  const form = useForm<z.infer<typeof registerSchema>>({
+  const form = useForm<z.infer<typeof loginSchema>>({
     mode: "all",
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
-      username: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    register.mutate(values);
+  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+    login.mutate(values);
   };
-
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const username = form.watch("username");
-  const usernameErrors = form.formState.errors.username;
-
-  const showPreview = username && !usernameErrors;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5">
@@ -85,32 +76,15 @@ export const SignUpView = () => {
                 size="sm"
                 className="text-base border-none underline"
               >
-                <Link prefetch href="/sign-in">
-                  Sign In
+                <Link prefetch href="/sign-up">
+                  Sign Up
                 </Link>
               </Button>
             </div>
             <h1 className="text-4xl font-medium">
-              Join over 10,000 sellers on Funroad
+              Welcome back! Please sign in to your account.
             </h1>
-            <FormField
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormDescription
-                    className={cn("hidden", showPreview && "block")}
-                  >
-                    Your store will be available at&nbsp;
-                    <strong>{username}</strong>
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <FormField
               name="email"
               render={({ field }) => (
@@ -142,9 +116,9 @@ export const SignUpView = () => {
               className="bg-black text-white hover:bg-pink-400 hover:text-primary"
               size="lg"
               variant="elevated"
-              disabled={register.isPending}
+              disabled={login.isPending}
             >
-              Create Account
+              Sign In
             </Button>
           </form>
         </Form>
