@@ -24,7 +24,7 @@ export const SearchInput = ({ disabled }: Props) => {
       <div className="relative w-full">
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-neutral-500" />
         <Input
-          disabled={disabled}
+          // disabled={disabled}
           className="pl-8"
           placeholder="Search Products"
         />
