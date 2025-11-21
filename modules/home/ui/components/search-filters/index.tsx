@@ -14,9 +14,9 @@ export const SearchFilters = () => {
 
   const params = useParams();
   const categoryParam = params.category as string | undefined;
-  const activeCategrory = categoryParam || "all";
+  const activeCategory = categoryParam || "all";
 
-  const activeCategoryData = data.find((cat) => cat.slug === activeCategrory);
+  const activeCategoryData = data.find((cat) => cat.slug === activeCategory);
 
   const activeCategoryColor = activeCategoryData?.color || DEFAULT_BG_COLOR;
 
@@ -39,7 +39,7 @@ export const SearchFilters = () => {
         <Categories data={data} />
       </div>
       <BreadcrumbNavigation
-        activeCategory={activeCategrory}
+        activeCategory={activeCategory}
         activeCategoryName={activeCategoryName}
         activeSubcategoryName={activeSubcategoryName}
       />
