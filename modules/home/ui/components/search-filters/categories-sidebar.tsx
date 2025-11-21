@@ -91,7 +91,7 @@ export const CategoriesSideBar = ({
             <button
               key={category.slug}
               onClick={() => handleCategoryClick(category)}
-              className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between items-center text-base  font-medium"
+              className="w-full text-left p-4 hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white focus-visible:outline-none flex justify-between items-center text-base font-medium"
             >
               {category.name}
               {category.subcategories && category.subcategories.length > 0 && (
