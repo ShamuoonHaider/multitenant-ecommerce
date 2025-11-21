@@ -25,7 +25,7 @@ export const SubcategoryMenu = ({
 
   return (
     <div
-      className="fixed z-100"
+      className="fixed z-[100]"
       style={{
         top: position.top,
         left: position.left,
@@ -41,7 +41,7 @@ export const SubcategoryMenu = ({
             <Link
               key={subcategory.slug}
               href={`/${category.slug}/${subcategory.slug}`}
-              className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between items-center underline font-medium"
+              className="w-full text-left p-4 hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white focus-visible:outline-none flex justify-between items-center underline font-medium"
             >
               {subcategory.name}
             </Link>
