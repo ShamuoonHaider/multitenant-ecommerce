@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface Props {
   minPrice?: string | null;
@@ -9,20 +10,21 @@ interface Props {
 }
 
 export const formateAsCurrency = (value: string) => {
-  const numericeValue = value.replace(/[^0-9]/g, "");
-
-  const parts = numericeValue.split(".");
+  const numericValue = value.replace(/[^0-9.]/g, "");
+  const parts = numericValue.split(".");
   const formattedValue =
     parts[0] + (parts.length > 1 ? "." + parts[1]?.slice(0, 2) : "");
 
   if (!formattedValue) return "";
 
   const numberValue = parseFloat(formattedValue);
+
   if (isNaN(numberValue)) return "";
 
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(numberValue);
 };
@@ -46,7 +48,7 @@ export const PriceFilter = ({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col gap-2">
-        <label className="font-medium text-base">Minimum price</label>
+        <Label className="font-medium text-base">Minimum price</Label>
         <Input
           type="text"
           placeholder="$0"
@@ -55,7 +57,7 @@ export const PriceFilter = ({
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label className="font-medium text-base">Maximum price</label>
+        <Label className="font-medium text-base">Maximum price</Label>
         <Input
           type="text"
           placeholder="∞"
