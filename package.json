@@ -10,12 +10,14 @@
     "lint": "eslint",
     "generate:types": "payload generate:types",
     "db:fresh": "payload migrate:fresh",
-    "db:seed": "bun run seed.ts"
+    "db:seed": "bun run seed.ts",
+    "generate:importmap": "payload generate:importmap"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@payloadcms/db-mongodb": "^3.64.0",
     "@payloadcms/next": "^3.64.0",
+    "@payloadcms/plugin-multi-tenant": "3.64.0",
     "@payloadcms/richtext-lexical": "^3.64.0",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
