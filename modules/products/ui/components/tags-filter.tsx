@@ -34,7 +34,7 @@ export const TagsFilter = ({ value, onChange }: TagsFilterProps) => {
     <div className="flex flex-col gap-y-2">
       {isLoading ? (
         <div className="flex items-center justify-center p-4">
-          <LoaderIcon className="size-4 animatetags-spin" />
+          <LoaderIcon className="size-4 animate-spin" />
         </div>
       ) : (
         data?.pages.map((page) =>

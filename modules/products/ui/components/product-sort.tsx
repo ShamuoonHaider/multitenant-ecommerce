@@ -25,7 +25,7 @@ export const ProductSort = () => {
         size="sm"
         className={cn(
           "rounded-full bg-white hover:bg-white",
-          filters.sort !== "curated" &&
+          filters.sort !== "trending" &&
             "bg-transparent border-transparent hover:border-border hover:bg-transparent"
         )}
         variant="secondary"
@@ -37,7 +37,7 @@ export const ProductSort = () => {
         size="sm"
         className={cn(
           "rounded-full bg-white hover:bg-white",
-          filters.sort !== "curated" &&
+          filters.sort !== "hot_and_new" &&
             "bg-transparent border-transparent hover:border-border hover:bg-transparent"
         )}
         variant="secondary"
