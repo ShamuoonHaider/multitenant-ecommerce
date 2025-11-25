@@ -176,7 +176,7 @@ export interface Tenant {
   image?: (string | null) | Media;
   stripeAccountId: string;
   /**
-   * you cannot create products until you submit your Stript details
+   * you cannot create products until you submit your Stripe details
    */
   stripeDetailSubmitted?: boolean | null;
   updatedAt: string;
