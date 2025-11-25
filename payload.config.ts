@@ -58,12 +58,8 @@ export default buildConfig({
       tenantsArrayField: {
         includeDefaultField: false,
       },
-      userHasAccessToAllTenants: (user) => {
-        if (user?.collection === "users") {
-          return Boolean(user.roles?.includes("super-admin"));
-        }
-        return false;
-      },
+      userHasAccessToAllTenants: (user) =>
+        Boolean(user?.roles?.includes("super-admin")),
     }),
     // storage-adapter-placeholder
   ],

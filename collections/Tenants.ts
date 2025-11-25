@@ -45,7 +45,7 @@ export const Tenants: CollectionConfig = {
       admin: {
         readOnly: true,
         description:
-          "you cannot create products until you submit your Stript details",
+          "you cannot create products until you submit your Stripe details",
       },
     },
   ],
