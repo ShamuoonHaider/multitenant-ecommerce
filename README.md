@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🛒 Multi-Vendor Marketplace (Next.js)
 
-## Getting Started
+A modern multi-vendor marketplace built with Next.js, focused on performance, type-safety, and a fully customizable CMS workflow.
 
-First, run the development server:
+🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Next.js – App Router, server components, modern routing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Payload CMS – Headless CMS for managing vendors, products & media
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+MongoDB – Primary database for scalable document storage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+tRPC – End-to-end type-safe backend APIs
 
-## Learn More
+Zod – Runtime validation + input schemas
 
-To learn more about Next.js, take a look at the following resources:
+TanStack Query – Async state management & data fetching
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+TypeScript – Strong types across the entire project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🎯 Features
 
-## Deploy on Vercel
+Vendor onboarding & product management through Payload CMS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Fully type-safe end-to-end flow with tRPC + Zod
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optimized data fetching with TanStack
+
+Scalable architecture with MongoDB
+
+Clean, modular folder structure ready for production
