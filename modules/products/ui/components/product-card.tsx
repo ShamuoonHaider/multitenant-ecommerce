@@ -1,6 +1,6 @@
 "use client";
 
-// Todo: Add real ratin
+// Todo: Add real rating
 
 import { formateCurrency, generateTenantURL } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
