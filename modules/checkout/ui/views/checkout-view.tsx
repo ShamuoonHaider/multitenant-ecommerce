@@ -35,7 +35,7 @@ export const CheckoutView = ({ tenantSlug }: checkoutViewProps) => {
         setStates({ success: false, cancel: false });
       },
       onSuccess: (data) => {
-        window.location.assign(data.url);
+        window.location.replace(data.url);
       },
       onError: (error) => {
         if (error.data?.code === "UNAUTHORIZED") {
