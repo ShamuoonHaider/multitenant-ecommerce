@@ -82,14 +82,18 @@ export const ProductView = ({ productId, tenantSlug }: Props) => {
               </div>
               <div className="hidden lg:flex px-6 py-4 items-center justify-center">
                 <div className="flex items-center gap-1">
-                  <StarRating rating={4} iconClassName="size-4" />
+                  <StarRating
+                    rating={4}
+                    iconClassName="size-4"
+                    className={""}
+                  />
                 </div>
               </div>
             </div>
 
             <div className="block lg:hidden px-6 py-4 items-center justify-center border-b">
               <div className="flex items-center gap-1">
-                <StarRating rating={4} iconClassName="size-4" />
+                <StarRating rating={4} iconClassName="size-4" className={""} />
                 <p className="text-base font-medium">{5} ratings</p>
               </div>
             </div>
@@ -108,7 +112,19 @@ export const ProductView = ({ productId, tenantSlug }: Props) => {
             <div className="border-t lg:border-t-0 lg:border-l h-full">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex flex-row items-center gap-2">
-                  <CartButton tenantSlug={tenantSlug} productId={productId} />
+                  {data.isPurchased ? (
+                    <Button
+                      variant="elevated"
+                      asChild
+                      className="flex-1 font-medium bg-pink-400"
+                    >
+                      <Link prefetch href={`/library/${data.id}`}>
+                        View in Library
+                      </Link>
+                    </Button>
+                  ) : (
+                    <CartButton tenantSlug={tenantSlug} productId={productId} />
+                  )}
                   <Button
                     className="size-12"
                     variant="elevated"

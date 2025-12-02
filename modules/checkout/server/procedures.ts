@@ -86,8 +86,8 @@ export const checkoutRouter = createTRPCRouter({
         }));
       const checkout = await stripe.checkout.sessions.create({
         customer_email: ctx.session.user.email,
-        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?/success=true`,
-        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?/canceled=true`,
+        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?success=true`,
+        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?cancel=true`,
         mode: "payment",
         line_items: lineItems,
         invoice_creation: {
