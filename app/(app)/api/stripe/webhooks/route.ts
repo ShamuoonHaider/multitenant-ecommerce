@@ -4,7 +4,6 @@ import config from "@payload-config";
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { ExpandedLineItem } from "@/modules/checkout/types";
-import { use } from "react";
 
 export async function POST(req: Request) {
   let event: Stripe.Event;
@@ -67,7 +66,7 @@ export async function POST(req: Request) {
             !expandedSession.line_items?.data ||
             !expandedSession.line_items.data.length
           ) {
-            throw new Error("NO line items found");
+            throw new Error("No line items found");
           }
           const lineItems = expandedSession.line_items
             .data as ExpandedLineItem[];
@@ -78,7 +77,7 @@ export async function POST(req: Request) {
               data: {
                 stripeCheckoutSessionId: data.id,
                 user: user.id,
-                product: item.price.product.metaData.id,
+                product: item.price.product.metadata.id,
                 name: item.price.product.name,
               },
             });
