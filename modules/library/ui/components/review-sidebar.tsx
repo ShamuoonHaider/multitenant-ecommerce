@@ -14,5 +14,5 @@ export const ReviewSidebar = ({ productId }: Props) => {
     })
   );
 
-  return <ReviewForm productId={productId} initialData={false} />;
+  return <ReviewForm productId={productId} initialData={data} />;
 };
