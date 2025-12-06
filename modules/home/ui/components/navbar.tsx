@@ -63,6 +63,7 @@ export const Navbar = () => {
         items={navbarItems}
         open={isSidebarOpen}
         onOpenChange={setIsSidebarOpen}
+        isLoggedIn={!!session.data?.user}
       />
 
       <div className="items-center gap-4 hidden lg:flex">
@@ -77,7 +78,7 @@ export const Navbar = () => {
         ))}
       </div>
       {session.data?.user ? (
-        <div>
+        <div className="hidden lg:block">
           <Button
             asChild
             variant="secondary"

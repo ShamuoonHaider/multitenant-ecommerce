@@ -1,7 +1,5 @@
 "use client";
 
-// Todo: Add real rating
-
 import { StarIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
