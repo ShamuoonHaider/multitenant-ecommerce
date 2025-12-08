@@ -15,6 +15,26 @@ import { Fragment, useState } from "react";
 import dynamic from "next/dynamic";
 import { toast } from "sonner";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "lexical";
+
+function normalizeEditorState(data: any): SerializedEditorState | null {
+  if (!data?.root?.children) return null;
+
+  try {
+    return {
+      ...data,
+      root: {
+        ...data.root,
+        children: data.root.children.map((child: any) => ({
+          type: child.type || "paragraph",
+          ...child,
+        })),
+      },
+    };
+  } catch {
+    return null;
+  }
+}
 
 const CartButton = dynamic(
   () => import("../components/cart-button").then((mod) => mod.CartButton),
@@ -111,8 +131,8 @@ export const ProductView = ({ productId, tenantSlug }: Props) => {
               </div>
             </div>
             <div className="p-6 ">
-              {data.description ? (
-                <RichText data={data.description} />
+              {data.description && normalizeEditorState(data.description) ? (
+                <RichText data={normalizeEditorState(data.description)!} />
               ) : (
                 <p className="font-medium text-muted-foreground italic">
                   No description provided
