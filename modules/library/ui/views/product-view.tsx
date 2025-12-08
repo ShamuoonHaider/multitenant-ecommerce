@@ -8,9 +8,29 @@ import { ReviewSidebar } from "../components/review-sidebar";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Suspense } from "react";
 import { ReviewFormSkeleton } from "../components/review-form";
+import type { SerializedEditorState } from "lexical";
 
 interface Props {
   productId: string;
+}
+
+function normalizeEditorState(data: any): SerializedEditorState | null {
+  if (!data?.root?.children) return null;
+
+  try {
+    return {
+      ...data,
+      root: {
+        ...data.root,
+        children: data.root.children.map((child: any) => ({
+          type: child.type || "paragraph",
+          ...child,
+        })),
+      },
+    };
+  } catch {
+    return null;
+  }
 }
 
 export const ProductView = ({ productId }: Props) => {
@@ -43,8 +63,8 @@ export const ProductView = ({ productId }: Props) => {
             </div>
           </div>
           <div className="lg:col-span-5">
-            {data.content ? (
-              <RichText data={data.content} />
+            {data.content && normalizeEditorState(data.content) ? (
+              <RichText data={normalizeEditorState(data.content)!} />
             ) : (
               <p className="font-medium italic text-muted-foreground">
                 No special content
