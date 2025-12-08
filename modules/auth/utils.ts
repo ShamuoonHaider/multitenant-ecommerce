@@ -10,9 +10,10 @@ export const generateAuthCookie = async ({ prefix, value }: Props) => {
     name: `${prefix}-token`,
     value: value,
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7, // 7 days
+    sameSite: "none",
+    domain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
+    secure: process.env.NODE_ENV === "production",
+    // maxAge: 60 * 60 * 24 * 7, // 7 days
   });
 };

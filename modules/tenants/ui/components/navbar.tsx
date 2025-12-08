@@ -61,9 +61,6 @@ export const NavbarSkeleton = () => {
       <div className="max-w(--breakpoint-xl) mx-auto flex- justify-between items-center h-full px-4 lg:px-12">
         <div />
       </div>
-      <Button disabled className="bg-white">
-        <ShoppingCartIcon className="text-black" />
-      </Button>
     </nav>
   );
 };
