@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev && payload generate:types",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "generate:types": "payload generate:types",
@@ -75,6 +75,7 @@
     "tailwind-merge": "^3.4.0",
     "vaul": "^1.1.2",
     "webpack": "^5.103.0",
+    "ws": "^8.18.3",
     "zod": "^4.1.13",
     "zustand": "^5.0.9"
   },
