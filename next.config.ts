@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
       config.externals = config.externals || [];
       // Don't externalize 'ws' - bundle it instead
       config.externals = config.externals.filter(
-        (external) => typeof external !== "string" || !external.includes("ws")
+        (external: string | object) =>
+          typeof external !== "string" || !external.includes("ws")
       );
     }
     return config;
