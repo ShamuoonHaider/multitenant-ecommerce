@@ -9,14 +9,12 @@ interface StarPickerProps {
   value?: number;
   onChange?: (value: number) => void;
   disabled?: boolean;
-  className?: string;
 }
 
 export const StarPicker = ({
   value = 0,
   onChange,
   disabled,
-  className,
 }: StarPickerProps) => {
   const [hoverValue, setHoverValue] = useState(0);
 

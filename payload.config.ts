@@ -4,8 +4,6 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
-import sharp from "sharp";
-
 import { Users } from "@/collections/Users";
 import { Media } from "@/collections/Media";
 import { Categories } from "@/collections/Categories";
@@ -64,8 +62,11 @@ export default buildConfig({
   },
   db: mongooseAdapter({
     url: DATABASE_URI,
+    connectOptions: {
+      serverSelectionTimeoutMS: 300000, // Increase to 30 seconds
+      socketTimeoutMS: 750000,
+    },
   }),
-  sharp,
   plugins: [
     multiTenantPlugin({
       collections: {
