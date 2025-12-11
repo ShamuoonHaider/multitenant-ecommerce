@@ -7,6 +7,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { DEFAULT_BG_COLOR } from "@/modules/home/constants";
 import { BreadcrumbNavigation } from "./breadcrumbs-navigation";
+import { Suspense } from "react";
 
 export const SearchFilters = () => {
   const trpc = useTRPC();
@@ -34,7 +35,13 @@ export const SearchFilters = () => {
       className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full"
       style={{ backgroundColor: activeCategoryColor }}
     >
-      <SearchInput />
+      <Suspense
+        fallback={
+          <div className="h-12 bg-white rounded-md border animate-pulse" />
+        }
+      >
+        <SearchInput />
+      </Suspense>
       <div className="hidden lg:block">
         <Categories data={data} />
       </div>
